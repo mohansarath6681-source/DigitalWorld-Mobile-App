@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d6efd">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.json">
+<title>Digital World</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef3f8;font-family:Arial,sans-serif;color:#172033}
+.app{max-width:520px;margin:auto;min-height:100vh;background:#f8fafc}
+.header{background:linear-gradient(135deg,#0878f9,#6037c9);color:#fff;padding:24px 18px 20px;text-align:center;border-radius:0 0 28px 28px}
+.logo{width:92px;height:92px;border-radius:50%;background:#fff;object-fit:contain;padding:3px;box-shadow:0 5px 18px #0003}
+.header h1{font-size:24px;margin:10px 0 4px}.header p{margin:0;font-size:13px}
+.content{padding:16px}.card{background:#fff;border-radius:20px;padding:16px;margin-bottom:15px;box-shadow:0 5px 20px #0001}
+.title{font-size:19px;font-weight:800;color:#1468d8;border-left:7px solid #1468d8;padding-left:10px;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{border:0;border-radius:13px;padding:15px 8px;font-size:16px;font-weight:800;cursor:pointer}
+.month{background:#fff7df;color:#915900;border:1px solid #f0d98a}.admission{background:#0d6efd;color:#fff}.green{background:#198754;color:#fff}.purple{background:#6f42c1;color:#fff}.orange{background:#ff8614;color:#fff}
+.page{display:none}.page.active{display:block}
+.back{background:#64748b;color:#fff;width:100%;margin-bottom:12px}
+label{display:block;font-size:13px;font-weight:700;margin:10px 0 5px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font-size:15px}
+textarea{min-height:70px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.option{padding:15px;border:1px solid #f0d98a;border-radius:12px;background:#fff8e7;color:#945c00;font-weight:800;font-size:18px}.option.selected{background:#0d6efd;color:#fff}
+.chosen{padding:12px;margin-top:10px;background:#eaf3ff;color:#0b5ed7;border-radius:10px;text-align:center;font-weight:800}
+.qr{text-align:center;background:#f8fafc;border:1px dashed #94a3b8;border-radius:12px;padding:14px;margin-top:14px}
+#qr{display:inline-block;background:#fff;padding:8px}.upi{font-weight:800;margin:8px;word-break:break-all}
+.pay{width:100%;background:#198754;color:#fff;margin-top:10px}.done{width:100%;background:#0d6efd;color:#fff;margin-top:10px}
+.status{display:none;background:#dcfce7;color:#166534;padding:10px;border-radius:9px;margin-top:10px;text-align:center;font-weight:700}
+.receipt{display:none;border:2px solid #172033;border-radius:12px;padding:15px;margin-top:15px;background:#fff}
+.rhead{text-align:center;border-bottom:2px solid #172033;padding-bottom:8px}.rhead h2{font-size:18px;margin:0}.row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed #cbd5e1;font-size:13px}.row strong{text-align:right;word-break:break-word}
+.photo{width:82px;height:102px;object-fit:cover;border:1px solid #222;border-radius:5px;display:block;margin:8px auto}
+.footer{text-align:center;color:#64748b;font-size:12px;padding:8px 0 25px}
+@media(min-width:700px){body{padding:20px}.app{border-radius:28px;overflow:hidden;box-shadow:0 10px 40px #0002}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="header">
+<img src="logo.png" class="logo" alt="Digital World Logo">
+<h1>Digital World</h1><p>Computer Education Center</p>
+</header>
+<main class="content">
+<section id="home" class="page active">
+<div class="card">
+<h2 class="title">🌐 Online Services</h2>
+<div class="grid">
+<button class="btn admission" onclick="show('admission')">📝 Online Admission</button>
+<button class="btn orange" onclick="show('monthly')">💰 Monthly Fee</button>
+<button class="btn green" onclick="alert('Photo & Signature service link यहाँ जोड़ा जा सकता है।')">📷 Photo & Signature</button>
+<button class="btn purple" onclick="alert('Certificate Upload service link यहाँ जोड़ा जा सकता है।')">📄 Certificate Upload</button>
+</div>
+</div>
+<div class="card">
+<h2 class="title">📅 Monthly Fee Options</h2>
+<div class="grid">
+<div class="btn month">₹500</div><div class="btn month">₹1,000</div>
+<div class="btn month">₹1,500</div><div class="btn month">₹2,000</div>
+<div class="btn month">₹2,500</div><div class="btn month">₹3,000</div>
+</div>
+</div>
+<div class="card">
+<h2 class="title">ℹ️ Important</h2>
+<p style="line-height:1.6;margin:0">Online Admission और Monthly Fee के लिए ऊपर दिए गए options का उपयोग करें।</p>
+</div>
+</section>
+
+<section id="monthly" class="page">
+<button class="btn back" onclick="show('home')">← Home</button>
+<div class="card">
+<h2 class="title">📅 Monthly Fee</h2>
+<label>Student Name *</label><input id="mName">
+<label>Mobile Number *</label><input id="mMobile" maxlength="10" inputmode="numeric">
+<label>Course *</label><select id="mCourse"><option value="">Select Course</option><option>CCA</option><option>DTP</option><option>ADCA</option><option>Tally Prime With GST</option><option>Hindi Typing</option><option>English Typing</option></select>
+<label>Fixed Amount *</label>
+<div class="options">
+<button class="option" onclick="monthly(500,this)">₹500</button><button class="option" onclick="monthly(1000,this)">₹1,000</button>
+<button class="option" onclick="monthly(1500,this)">₹1,500</button><button class="option" onclick="monthly(2000,this)">₹2,000</button>
+<button class="option" onclick="monthly(2500,this)">₹2,500</button><button class="option" onclick="monthly(3000,this)">₹3,000</button>
+</div>
+<div id="chosen" class="chosen">Amount चुनें</div>
+<div class="qr"><div id="qr"></div><div class="upi">mohan500mrd1@ybl</div></div>
+<button class="btn pay" onclick="upiPay()">💳 Pay Now</button>
+<button class="btn done" onclick="markDone('monthly')">✅ Payment Done</button>
+<div id="mStatus" class="status">Payment marked as completed.</div>
+</div></section>
+
+<section id="admission" class="page">
+<button class="btn back" onclick="show('home')">← Home</button>
+<div class="card">
+<h2 class="title">📝 Online Admission</h2>
+<label>Student Photo</label><input id="photo" type="file" accept="image/*" onchange="photoPreview(event)">
+<img id="preview" class="photo" style="display:none">
+<label>Admission Number</label><input id="admNo" placeholder="Blank = automatic number">
+<label>Student Name *</label><input id="aName">
+<label>Father / Guardian Name *</label><input id="aFather">
+<label>Mobile Number *</label><input id="aMobile" maxlength="10" inputmode="numeric">
+<label>Course *</label><select id="aCourse"><option value="">Select Course</option><option>CCA</option><option>DTP</option><option>ADCA</option><option>Tally Prime With GST</option><option>Hindi Typing</option><option>English Typing</option></select>
+<label>Course Duration</label><select id="duration"><option>3 Months</option><option>6 Months</option><option>1 Year</option><option>2 Years</option></select>
+<label>Address</label><textarea id="address"></textarea>
+<div class="qr"><b>Admission Fee ₹1,000 Fixed</b><div id="aQR"></div><div class="upi">mohan500mrd1@ybl</div></div>
+<div class="card" style="padding:10px;margin:12px 0 0;background:#f8fafc">
+<div class="row"><span>Registration</span><strong>₹100</strong></div><div class="row"><span>Admission</span><strong>₹400</strong></div><div class="row"><span>Installment</span><strong>₹500</strong></div><div class="row"><strong>Total</strong><strong>₹1,000</strong></div>
+</div>
+<button class="btn pay" onclick="admissionPay()">💳 Pay ₹1,000</button><button class="btn done" onclick="markDone('admission')">✅ Payment Done</button>
+<div id="aStatus" class="status">Payment marked as completed.</div>
+<button class="btn purple" onclick="receipt()" style="width:100%;margin-top:10px">🧾 Generate Admission Slip</button>
+</div>
+<div id="receiptBox" class="receipt">
+<div class="rhead"><h2>Digital World Computer Education Center</h2><p>ONLINE ADMISSION RECEIPT</p></div>
+<img id="rPhoto" class="photo" style="display:none"><div class="row"><span>Admission No.</span><strong id="rAdm"></strong></div><div class="row"><span>Student</span><strong id="rName"></strong></div><div class="row"><span>Father/Guardian</span><strong id="rFather"></strong></div><div class="row"><span>Mobile</span><strong id="rMobile"></strong></div><div class="row"><span>Course</span><strong id="rCourse"></strong></div><div class="row"><span>Duration</span><strong id="rDuration"></strong></div><div class="row"><span>Total Paid</span><strong>₹1,000</strong></div>
+<button class="btn purple" onclick="window.print()">🖨️ Print / Save PDF</button><button class="btn green" onclick="whatsapp()">📱 WhatsApp Receipt</button>
+</div>
+</section>
+<div class="footer">© Digital World Computer Education Center</div>
+</main></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+let amount=0,photoData="";
+const upi="mohan500mrd1@ybl";
+function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+function monthly(v,b){amount=v;document.querySelectorAll('#monthly .option').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');chosen.textContent='Selected: ₹'+v.toLocaleString('en-IN');qr.innerHTML='';new QRCode(qr,{text:`upi://pay?pa=${encodeURIComponent(upi)}&pn=Digital%20World&am=${v}&cu=INR`,width:180,height:180})}
+function validMonthly(){if(!mName.value.trim()||!/^[0-9]{10}$/.test(mMobile.value.trim())||!mCourse.value||!amount){alert('Student, mobile, course और fixed amount भरें।');return false}return true}
+function upiPay(){if(validMonthly())location.href=`upi://pay?pa=${encodeURIComponent(upi)}&pn=Digital%20World&am=${amount}&cu=INR`}
+function markDone(type){document.getElementById(type==='monthly'?'mStatus':'aStatus').style.display='block'}
+function photoPreview(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{photoData=r.result;preview.src=photoData;preview.style.display='block'};r.readAsDataURL(f)}
+new QRCode(aQR,{text:`upi://pay?pa=${encodeURIComponent(upi)}&pn=Digital%20World&am=1000&cu=INR`,width:180,height:180});
+function admissionPay(){if(!aName.value.trim()||!aFather.value.trim()||!/^[0-9]{10}$/.test(aMobile.value.trim())||!aCourse.value){alert('Admission form की जरूरी जानकारी भरें।');return}location.href=`upi://pay?pa=${encodeURIComponent(upi)}&pn=Digital%20World&am=1000&cu=INR`}
+function receipt(){
+if(!aName.value.trim()||!aFather.value.trim()||!/^[0-9]{10}$/.test(aMobile.value.trim())||!aCourse.value){alert('Admission form की जरूरी जानकारी भरें।');return}
+let n=admNo.value.trim()||'DW-ADM-'+Date.now().toString().slice(-6);admNo.value=n;
+rAdm.textContent=n;rName.textContent=aName.value;rFather.textContent=aFather.value;rMobile.textContent=aMobile.value;rCourse.textContent=aCourse.value;rDuration.textContent=duration.value;
+if(photoData){rPhoto.src=photoData;rPhoto.style.display='block'}receiptBox.style.display='block'
+}
+function whatsapp(){let msg=`Digital World Computer Education Center%0AOnline Admission Receipt%0AAdmission No: ${encodeURIComponent(rAdm.textContent)}%0AStudent: ${encodeURIComponent(rName.textContent)}%0ACourse: ${encodeURIComponent(rCourse.textContent)}%0ADuration: ${encodeURIComponent(rDuration.textContent)}%0ATotal Paid: ₹1,000`;let n=aMobile.value.replace(/\D/g,'');if(n.length===10)location.href=`https://wa.me/91${n}?text=${msg}`}
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body></html>
